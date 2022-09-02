@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun times</title>
+    <style>
+        body { margin: 20px}
+        canvas {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="one"></canvas>
+    <script>
+
+        const canvas = document.getElementById("one");
+
+        canvas.width = 640;
+        canvas.height = 480;
+
+        const context = canvas.getContext('2d');
+
+        let hor = Math.random() * canvas.width;
+        let ver = Math.random() * canvas.height;
+
+        let horSpeed = 2;
+        let verSpeed = 2;
+
+        const drawStuff = () => {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillRect(hor, ver, 10, 10);
+
+            hor = hor + horSpeed;
+            ver = ver + verSpeed;
+
+            if (hor > canvas.width - 20) {
+                horSpeed = -2;
+            }
+
+            if (ver > canvas.height - 20) {
+                verSpeed = -2;
+            }
+
+            if (hor < 10) {
+                horSpeed = 2;
+            }
+
+            if (ver < 10) {
+                verSpeed = 2;
+            }
+
+            window.requestAnimationFrame(() => { drawStuff() });
+        }
+
+        // Kicks off the render loop
+        window.requestAnimationFrame(() => { drawStuff() });
+
+    </script>
+   
+</body>
+</html>
+ 
+
